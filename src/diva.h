@@ -1,4 +1,4 @@
-/*JN 12/11/2007 10:07:08 PM CET*/
+/*JN 03/14/2007 02:35:59 PM CET*/
 /*Bayes-DIVA*/
 
 
@@ -8,11 +8,8 @@
 
 #define MAX 250    		/*** unsigned char. indicating impossibility  ***/
 #define KEEPMAX 32767   /**** max. no. alternatives to keep at each node ***/ 
-#define MAXLINE 30000	/**** max input line ***/ /* JN */
-#define MAXTAXA 180		/*** max. no. taxa ***/ /* JN */
-/*#define MAXTAXLABEL 17*/ /*** max. length taxon name ***/ /* JN */
-/*#define MAXTREENAME 17*/ /*** max. length tree name ***/ /* JN */
-/*#define MAXDISTRNAME 17*/ /*** max. length distr name ***/ /* JN */
+#define MAXLINE 10000	/**** max input line ***/
+#define MAXTAXA 180		/*** max. no. taxa ***/
 #define	DIVABLOCK 0		/*** block markers ***/
 #define	DATABLOCK 1
 #define	TREEBLOCK 2
@@ -28,8 +25,7 @@
 char help(unsigned long,FILE *);
 char instring (FILE *, char *);
 char rarefy(unsigned short);
-unsigned short stringtotree (char *); /*JN. 12/11/2007 09:39:41 PM CET. Changed the return type. */
-/*char stringtotree (char *);*/
+char stringtotree (char *);
 short distribution (char *);
 unsigned short disttono (char *);
 void printanc(FILE *, unsigned short *d[]);
@@ -96,9 +92,7 @@ char absolute,classes,sumareas,integer;	/*** status variables **/
 short summax;			 /***max distribution number +1 corr. to sumareas ***/
 float interval;					/*** segment bounds variable ***/
 char taxlabel[MAXTAXA+1][17];		/*** taxon labels ***/
-/*char taxlabel[MAXTAXA+1][MAXTAXLABEL];*/ /* JN */
 char tokenlabel[MAXTAXA+1][17];		/*** token labels ***/
-/*char tokenlabel[MAXTAXA+1][MAXTAXLABEL];*/ /* JN */
 char charlabel[16][17];				/*** area labels ***/
 char intflag;				/*** interrupt flags **/
 float *vicfreq[5][256];				/*** summary variable ***/

@@ -1,4 +1,4 @@
-/*JN 12/11/2007 10:07:08 PM CET*/
+/*JN 03/14/2007 11:11:12 PM CET*/
 /*Bayes-DIVA*/
 
 #include <stdio.h>
@@ -31,7 +31,6 @@ main ()
 {
 	unsigned short a,b,c,i,j;
 	char distrname[20], treename[20],*s, *word;
-/*	char distrname[MAXDISTRNAME], treename[MAXTREENAME],*s, *word;*/ /* JN */
 	char temp[MAXLINE+1]; 
 	long g;
 	float f;
@@ -113,13 +112,13 @@ main ()
 	ntax=tree=dist=0;		/*** no taxa, no tree, no distribution set  ***/
 
 	printf ("\nWARNING: Experimental version!\n");
-	printf ("\nDIVA version 1.2.JN -- 12/11/2007 10:07:08 PM CET\n");
+	printf ("\nDIVA version 1.2.JN -- 03/14/2007 11:22:02 PM CET.\n");
 	printf ("Johan Nylander\n");
     printf ("This version is based on DIVA WIN/MAC version:\n\n");
-	printf ("DIVA version 1.2.    4 SEPT 2001\n");
+	printf ("DIVA version 1.2                   4 SEPT 2001             \n");
 	printf ("(c) Fredrik Ronquist.\n\n");
 	printf ("Type 'help;' or 'help <command>;' for help.\n");
-    printf ("Type 'quit;' or use 'Ctrl+C' to quit.\n\n");
+    printf ("Use Ctrl+C to quit\n\n");
 	
 new_input:
 
@@ -311,9 +310,8 @@ new_input:
 			goto new_input;
 		}
 		
-		if (i!=ntax) { /* Here is the bug! i is not equal to ntax and tree is set to 0. JN*/
+		if (i!=ntax) {
 			tree=0;
-            printf ("\ni is not equal to ntax. set tree to 0\n"); /* JN */
 			ntax=i;
 		}
 		
@@ -357,7 +355,7 @@ new_input:
 	case 5:				/***  optimize  ***/
 	
 		if (tree==0) {
-			eprint("error - no tree specified"); /* Here is the error message. JN */
+			eprint("error - no tree specified");
 			goto new_input;
 		}
 		
@@ -609,10 +607,10 @@ new_input:
 		if (*word=='*')
 			word=strtok (NULL," =;");
 		
-		temp[0]=temp[16]='\0'; /* Check this '16'. JN */
+		temp[0]=temp[16]='\0';
 		
 		if (word!=NULL && *word!='(') {
-			strncpy (temp,word,16); /* Check this '16'. JN */
+			strncpy (temp,word,16);
 			strcat (temp, " ");
 			word=strtok(NULL," =;");
 		}
@@ -624,8 +622,8 @@ new_input:
 		
 		for (;(s=strtok(NULL," ;"))!=NULL;strcat(word,s))	/*** skip spaces in spec **/
 			;
-		b=ntax;
 
+		b=ntax;
 		ntax=stringtotree (word);
 		
 		if (ntax!=b)			/*** new tree - no distribution ***/

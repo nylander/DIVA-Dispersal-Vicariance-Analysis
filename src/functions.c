@@ -1,4 +1,4 @@
-/*JN 12/11/2007 10:07:08 PM CET*/
+/*JN 03/14/2007 11:06:43 PM CET*/
 /*Bayes-DIVA*/
 
 
@@ -39,7 +39,7 @@ char pause (FILE *fp)
 }
 
 /**** interrupt: return 1 if interrupt requested, else 0 ****/
-/*03/14/2007 11:14:08 PM CET. JN */
+/*03/14/2007 11:14:08 PM CET*/
 /*Workaround for Linux: always return 0*/
 /* To Do: Listen to 'Ctrl+C', and 'Ctrl+D' */
 char interrupt (void)
@@ -49,19 +49,18 @@ char interrupt (void)
 
 
 /*** stringtotree: convert treespec s to tree, return 0 if failure else ntax in tree ***/
-/*char stringtotree (char *s)*/ /* JN. Changed the return type. 12/11/2007 09:39:15 PM CET.*/
-unsigned short stringtotree (char *s)
+char stringtotree (char *s)
 {
 	extern short *root,*smal,*large,*l,*r;
 	extern float *nodeage;
 	extern short ntax;
 	extern char tokenset, inblock, taxlabelset;
-	extern char taxlabel[][17],tokenlabel[][17]; /* Check '17'. JN */
+	extern char taxlabel[][17],tokenlabel[][17];
 	
 	short b3,b2,b1,ia,ib,c;
 
-	char label[MAXTAXA+1][17], match[MAXTAXA+1]; /* Check '17'. JN */
-	char copy[MAXLINE],*t,u[5],*v; /* Check '5'. JN */
+	char label[MAXTAXA+1][17], match[MAXTAXA+1];
+	char copy[MAXLINE],*t,u[5],*v;
 	char istoken=0, istaxlabel=0;
 	
 	/*** set labels, count number taxa ***/
@@ -71,8 +70,8 @@ unsigned short stringtotree (char *s)
 	t=strtok (copy,"(),");
 	
 	for (ia=1; t!=NULL;ia++) {
-		strncpy(label[ia],t,16); /* Check '16'. JN */
-		label[ia][16]='\0'; /* Check '16'. JN */
+		strncpy(label[ia],t,16);
+		label[ia][16]='\0';
 		t=strtok(NULL,"(),");
 	}
 	
@@ -244,7 +243,7 @@ unsigned short stringtotree (char *s)
 
 	if (strlen(copy)!=strlen(u))
 		return 0;
-
+	
 	return ntax;
 }
 
@@ -374,7 +373,7 @@ void printanc (FILE *fp, unsigned short *d[])
 		
 		position=fprintf (fp,"node %d (anc. of terminals %s-%s):", j, taxlabel[smal[j]],taxlabel[large[j]]);
 
-        /* JN 03/14/2007 11:05:33 PM CET: Print all reconstructions on one line */
+        /* JN 03/14/2007 11:05:33 PM CET: Prin all reconstructions on one line */
 		for (a=0; (i=d[j][a])!=0; a++) {
 			notodist (i,s);
             position+=fprintf (fp," %s",s);
